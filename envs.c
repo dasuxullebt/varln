@@ -31,8 +31,8 @@
 #include "envs.h"
 
 const size_t INIT_STR = 8192;
-const char* proc = "/proc/";
-const char* environ = "/environ";
+const char proc[] = "/proc/";
+const char environ[] = "/environ";
 
 inline static int digits (pid_t pid) {
   return snprintf(0,0,"%+d",(int)pid)-1;

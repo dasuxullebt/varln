@@ -251,14 +251,25 @@ static struct fuse_operations varln_oper = {
 };
 
 int main (int argc, char** argv) {
-  if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-')) {
-    dprintf(STDERR_FILENO, "Incorrect commandline!\n");
-  }
-  confpath = argv[argc-2];
-  argv[argc-2] = argv[argc-1];
-  argc--;
 
+  int i;
   
+
+  for (i = 1; i < argc; ++i) {
+    if (strcmp(argv[i], "-o") == 0) {
+      i++; // ignore options
+    } else {
+      confpath = argv[i];
+      int j;
+      argc--;
+      for (j = i; j < argc; ++j) {
+	argv[j] = argv[j+1];
+      }
+      goto proceed;
+    }
+  }
+
+ proceed:
   /* just as a test */
   if (chdir(confpath) < 0) {
     dprintf(STDERR_FILENO, "Could not chdir to config directory %s.", confpath);
