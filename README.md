@@ -55,3 +55,8 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+## See also
+
+[varsymfs](https://github.com/onslauth/varsymfs) seems to be a project
+that aims to create variant symlinks in the kernel.
